@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <!-- Don't use this in production: -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <title>Hola Mundo</title>
+    
+</head>
+<body>
+    <section>
+        
+    </section>
+    <section id="reactID"></section>
+    <script type="text/babel">
+        
+
+        //<p alt='bienvenida' style='background: aqua'>Hola Mundo</p>
+        /* const app = React.createElement(
+            'p',
+            {
+                alt:'bienvenida',
+                children:'Hola Mundo',
+                style:{
+                    background:'aqua',
+                    fontSize:'5rem', //como es javascript no se permite la propiedad con giones'-'; por tal motivo se usa camelCase
+                }
+            }
+        ); */
+
+        //<div style='background: green'>
+        //  <span>Holi desde react</span>
+        //</div>
+        /* const app2 = React.createElement(
+            'div',
+            {
+                style:{
+                    background:'green',
+                }
+            },
+            React.createElement(
+                'span',
+                {
+                    children:'Holi desde react'
+                }
+            )
+        ); */
+
+        /* const span = React.createElement(
+            'span',
+            {
+                children:'Holi desde react'
+            }
+        );
+
+        const app2 = React.createElement(
+            'div',
+            {
+                style:{
+                    background:'green',
+                },
+                children:span
+            },
+            
+        ); */
+
+        /* const span = React.createElement(
+            'span',
+            {
+                children:'Holi desde react'
+            }
+        );
+
+        const span2 = React.createElement(
+            'span',
+            {
+                children:'Holi desde react x2'
+            }
+        );
+
+        const app2 = React.createElement(
+            'div',
+            {
+                style:{
+                    background:'gray',
+                },
+                children:[span,span2]
+            },
+            
+        ); */
+
+        /* const styleValue = { background: 'blue', color: 'white' };
+        const fn = () => alert('Holi desde react');
+        const app2 = (
+            <div style={styleValue} onClick={fn}>
+                <span className = 'button btn-green'>
+                    holi desde React
+                </span>    
+            </div>
+        ) */
+
+
+        const Fn = () => {
+            const sayHi = () => alert('Holi desde react');
+
+            return (
+                <div style={{background: 'red'}}>
+                    <h1 onClick={sayHi}>Holi</h1>
+                    <p>Aprendiendo React con Babel</p>
+                    
+                </div>
+            )
+        }
+        const DOM_NODE = document.getElementById('reactID');
+        ReactDOM.render(<Fn />, DOM_NODE);
+    </script>
+</body>
+</html>

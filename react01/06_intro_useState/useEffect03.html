@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <!-- Don't use this in production: -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <title>Clase 06</title>
+</head>
+
+<body>
+    <section id="reactID"></section>
+    <script type="text/babel">
+
+        const css = {
+
+            background: "linear-gradient(to bottom, #14274e, #394867)",
+            fontFamily: 'sans-serif',
+            color: 'white',
+            margin: '1rem',
+            padding: '1rem',
+            borderRadius: '0.4rem'
+
+        }
+
+        const x = 6;
+        
+        
+            
+            
+            
+
+        const Blinker = ({ name}) => {
+            const [visible, setVisible] = React.useState(true);
+
+
+            React.useEffect(() => {
+                const id =    setInterval(()=> setVisible(v => !v), 2000);
+                return () => clearInterval(id);
+            }, []);
+            
+            
+            return (
+                <div style={css}>
+                    {x === 5 ? <h1>Hola Mundo</h1> : <h2>Hola Sudamérica</h2>} 
+                    <h1 style={{display: visible ? 'block' : 'none'}}>Su nombre es {name}</h1>
+                    
+                </div>
+            );
+        };
+
+
+        const SuperApp = () => {
+            return (
+                <React.StrictMode>
+                    <section>
+                        
+                        <Blinker name='Dayerli'/>
+                            
+                    </section>
+                </React.StrictMode>
+            )
+        }
+
+        const DOM_NODE = document.getElementById("reactID");
+        ReactDOM.render(<SuperApp />,DOM_NODE);
+        </script>
+
+
+</body>
+
+</html>
