@@ -1,0 +1,108 @@
+<!DOCTYPE html> 
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+        <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+        <!-- Don't use this in production: -->
+        <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+        <title>Clase 08</title>
+    </head>
+
+    <body>
+        <div id="root"></div>
+        <style>
+            .app {
+                background-color: #8bcdcd;
+                padding: 1rem;
+            }
+
+            .todos {
+                display: flex;
+                justify-content: space-between;
+            }
+            .todo {
+                background-color: #3797a4;
+                padding: 0.5rem;
+                margin: 0.5rem 0;
+                border-radius: 0.4rem;
+                font-family: sans-serif;
+                color: #14274e;
+            }
+
+            .add {
+                background-color: #f1f6f9;
+                padding: 0.2rem 0.7rem;
+                border: 0;
+                border-radius: 0.4rem;
+                font-family: sans-serif;
+                color: #14274e;
+            }
+        </style>
+        <script type="text/babel">
+
+            const css = {
+
+            background : "linear-gradient(to bottom, #14274e, #394867)",
+            fontFamily : 'sans-serif',
+            color : 'white',
+            margin : '1rem',
+            padding : '1rem',
+            borderRadius : '0.4rem'
+        }
+
+        const ToDo = ({text, deleteTodo}) => {
+            return (
+                <div className="todo" >
+                    <input type="checkbox" onChange={() => deleteTodo(text)}/>
+                    {text}
+                </div>
+            )
+        }
+        
+        
+        const ToDos = () => {
+            const [text, setText] = React.useState('')
+            const [todos, setTodos] = React.useState([])
+
+            const updateText = e => setText(e.target.value)
+
+            const addNewTodo = () => {
+                setTodos(todos => {
+                    if(text == '') return todos
+                    const newTodos = [...todos]
+                    newTodos.push(text)
+                    setText('')
+                    return newTodos
+                })
+            }
+            return (
+                <main className='app'>
+                    <section className='todos' style={css}>
+                        <input className='input' value={text} onChange={updateText} />
+                        <button className='add' onClick={addNewTodo}>Add!</button>
+                    </section>
+
+                    <section>
+                        {todos.map(todo => {
+                            const deleteTodo = (text) => {
+                                setTodos(oldTodos => todos.filter(todo => todo !== text))
+                            }
+
+                            return <ToDo key={todo} text={todo} deleteTodo={deleteTodo}/>
+                        })}
+                    </section>
+
+                </main>
+            )
+        }
+        ReactDOM.render(<ToDos />, document.getElementById("root"));
+        </script>
+
+
+    </body>
+
+</html>

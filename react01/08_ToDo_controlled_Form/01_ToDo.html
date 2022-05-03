@@ -25,15 +25,15 @@
             padding: '1rem',
             borderRadius: '0.4rem'
 
-        }
+        } 
 
-        const Ejemplo = ({initValue}) => {
-
+        const Ejemplo = ({ }) => {
             
-            
+            // primero: guardamos los datos del input en una variable de estado
+            const [text, setText] = React.useState('')
             return (
                 <div style={css}>
-                    
+                    <input value={text} onChange={e => setText(e.target.value)} />
                 </div>
             );
         };
