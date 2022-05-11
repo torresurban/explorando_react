@@ -1,4 +1,4 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="en">
 
     <head>
@@ -57,13 +57,11 @@
         const ToDo = ({text, deleteTodo}) => {
             return (
                 <div className="todo" >
-                    <input type="checkbox" onChange={() => deleteTodo(text)}/>
+                    <input type="checkbox" onChange={() => setTimeout(() => deleteTodo(text), 1000)}/>
                     {text}
                 </div>
             )
         }
-        
-        
         const ToDos = () => {
             const [text, setText] = React.useState('')
             const [todos, setTodos] = React.useState([])
@@ -79,6 +77,11 @@
                     return newTodos
                 })
             }
+
+            const deleteTodo = (text) => {
+                setTodos(oldTodos => todos.filter(todo => todo !== text))
+            }
+
             return (
                 <main className='app'>
                     <section className='todos' style={css}>
@@ -88,10 +91,7 @@
 
                     <section>
                         {todos.map(todo => {
-                            const deleteTodo = (text) => {
-                                setTodos(oldTodos => todos.filter(todo => todo !== text))
-                            }
-
+                            deleteTodo
                             return <ToDo key={todo} text={todo} deleteTodo={deleteTodo}/>
                         })}
                     </section>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <!-- Don't use this in production: -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <title>Clase 08</title>
+</head>
+
+<body>
+    <div id="root"></div>
+    <style>
+        html {
+            background-color: rgb(48, 48, 48);
+            font-family: 'sans-serif';
+            color: rgb(224, 224, 224);
+            font-size: 2rem;
+            margin: 0.4rem;
+        }
+        p {
+            font-weight: 800;
+        }
+    </style>
+    <script type="text/babel">
+
+        const css = {
+
+            background: "linear-gradient(to bottom, #14274e, #394867)",
+            fontFamily: 'sans-serif',
+            color: 'white',
+            margin: '1rem',
+            padding: '1rem',
+            borderRadius: '0.4rem'
+
+        }
+
+        const Quote = () => {
+
+            const [data, setData] = React.useState(null)
+
+            React.useEffect(() => {
+                const request = 'https://www.breakingbadapi.com/api/quote/random'
+                fetch(request)
+                    .then(response => response.json())
+                    .then(x => setData(x[0]))
+            }, []);
+
+            if (data == null) {
+                return <div>Loading...</div>
+            }
+            return (
+                <main>
+                    <section>
+                        <p>{data.quote}</p>
+
+                        {data.author}<br></br>
+                        {data.series}
+                    </section>
+                </main>
+            );
+        };
+
+
+        ReactDOM.render(<Quote />, document.getElementById("root"));
+        </script>
+
+
+</body>
+
+</html>

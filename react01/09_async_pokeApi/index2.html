@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <!-- Don't use this in production: -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <title>Clase 08</title>
+</head>
+
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+
+        const css = {
+
+            background: "linear-gradient(to bottom, #14274e, #394867)",
+            fontFamily: 'sans-serif',
+            color: 'white',
+            margin: '1rem',
+            padding: '1rem',
+            borderRadius: '0.4rem'
+
+        }
+
+        const ToDos = () => {
+
+            // primero: guardamos los datos del input en una variable de estado
+
+
+            const input = React.useRef()
+            console.log(input);
+            return (
+                <main onSubmit={(e) => {
+                    const inputValue = input.current.value
+                    console.log(inputValue)
+
+                    e.preventDefault()
+                    return false
+                }}>
+                    <form >
+                        Contraseña:{' '}
+                        <input ref={input} className='input' />
+                        <button>Confirmar</button>
+                    </form>
+                </main>
+            );
+        };
+
+
+        ReactDOM.render(<ToDos />, document.getElementById("root"));
+        </script>
+
+
+</body>
+
+</html>
